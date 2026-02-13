@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'next_page.dart';
 
-void main(){
+void main() {
   runApp(MyApp());
 }
 
@@ -9,54 +8,74 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      home: InputFormPage(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
+class InputFormPage extends StatefulWidget {
+  @override
+  State<InputFormPage> createState() => _InputFormPageState();
+}
+
+class _InputFormPageState extends State<InputFormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('첫 번째 화면'),
+        title: Text('명함 정보 입력'),
+        backgroundColor: Colors.yellow,
       ),
-      body: Center(
+      body: Padding(
+        padding: EdgeInsets.all(16),
         child: Column(
-        children: [
-          ElevatedButton(onPressed:(){
-          Navigator.push(
-            context, MaterialPageRoute(builder: (context) => NextPage(
-            message: '안녕하세요',)
-          )
-          );
-        },
-            child: Text('인사하기')
-          ),
-          SizedBox(height: 20),
+          children: [
+            Text('명함에 들어갈 정보를 입력하세요',
+              style: TextStyle(
+              fontSize: 20
+            ),),
+            SizedBox(height: 16),
+            TextField(
+              decoration: InputDecoration(
+                labelText: '이름',
+                  prefixIcon: Icon(Icons.person),
+                enabledBorder: OutlineInputBorder()
+              ),
+            ),
 
-          ElevatedButton(onPressed:(){
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => NextPage(
-              message: '반갑습니다',)
-            )
-            );
-          },
-              child: Text('반가워하기')
-          ),
+            SizedBox(height: 16),
+            TextField(
+              decoration: InputDecoration(
+                labelText: '직업',
+                  prefixIcon: Icon(Icons.work),
+                  enabledBorder: OutlineInputBorder()
+              ),
+            ),
 
-          SizedBox(height: 20),
+            SizedBox(height: 16),
+            TextField(
+              decoration: InputDecoration(
+                labelText: '이메일',
+                  prefixIcon: Icon(Icons.email),
+                  enabledBorder: OutlineInputBorder()
+              ),
+            ),
 
-          ElevatedButton(onPressed:(){
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => NextPage(
-              message: '오늘 날씨가 좋네요',)
-            )
-            );
-          },
-              child: Text('날씨이야기')
-          ),
-          ]
+            SizedBox(height: 16),
+            TextField(
+              decoration: InputDecoration(
+                labelText: '전화번호',
+                  prefixIcon: Icon(Icons.phone),
+                  enabledBorder: OutlineInputBorder()
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(onPressed: (){}, child: Text('명함 만들기'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue,
+              foregroundColor: Colors.white
+            ),)
+          ],
         ),
       ),
     );
